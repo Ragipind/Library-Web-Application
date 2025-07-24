@@ -1,0 +1,140 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Library </title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f2f2f2;
+      background-image: url("{{ url_for('static', filename='images/img.jpg') }}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #000;
+    }
+    .section-box {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      height: 100%;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .section-box:hover {
+      transform: scale(1.02);
+    }
+    footer {
+      margin-top: 50px;
+      background: #8ca0b7;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .nav-link.active {
+      font-weight: bold;
+    }
+    .dark-mode {
+      background-color: #121212 !important;
+      color: white;
+    }
+    .dark-mode .section-box {
+      background-color: #1f1f1f;
+      color: white;
+    }
+    .table th, .table td {
+      vertical-align: middle;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+  </script>
+
+  <div class="container py-4">
+    <h2 class="text-center mb-4">Library Dashboard</h2>
+
+    <div class="row g-4">
+      <!-- Available Books -->
+      <div class="col-md-4">
+        <div class="section-box">
+          <h4>Available Books</h4>
+          <p>View all books in the library</p>
+          <a href="{{ url_for('books') }}" class="btn btn-success">View Books</a>
+        </div>
+      </div>
+
+      <!-- Add Book -->
+      <div class="col-md-4">
+        <div class="section-box">
+          <h4>Add Book</h4>
+          <p>Add new books to the library</p>
+          <a href="{{ url_for('add_book') }}" class="btn btn-success">Add Book</a>
+        </div>
+      </div>
+
+      <!-- Issued Books -->
+      <div class="col-md-4">
+        <div class="section-box">
+          <h4>Issued Books</h4>
+          <p>View all books that are issued</p>
+          <a href="{{ url_for('issued_books') }}" class="btn btn-success">Issued Books</a>
+        </div>
+      </div>
+
+      <!-- Help -->
+      <div class="col-md-4">
+        <div class="section-box">
+          <h4>Help</h4>
+          <p>Need help using the system?</p>
+          <a href="{{ url_for('help_page') }}" class="btn btn-secondary">Help</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Return Book Table Section -->
+    <div class="mt-5">
+      <h3 class="text-center mb-4">Books You Have Borrowed</h3>
+      {% if borrowed_books %}
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover bg-white">
+          <thead class="table-dark">
+            <tr>
+              <th>Title</th>
+              <th>Borrow Date</th>
+              <th>Due Date</th>
+              <th>Return</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for borrow in borrowed_books %}
+            <tr>
+              <td>{{ borrow.book.title }}</td>
+              <td>{{ borrow.borrow_date.strftime('%Y-%m-%d') }}</td>
+              <td>{{ borrow.due_date.strftime('%Y-%m-%d') }}</td>
+              <td>
+                <a href="{{ url_for('return_book', borrow_id=borrow.id) }}" class="btn btn-secondary">Return</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <p class="text-center text-muted">You haven't borrowed any books.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Library Management System | Built with Flask</p>
+  </footer>
+</body>
+</html>

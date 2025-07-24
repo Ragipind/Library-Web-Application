@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+  body {
+    background-image: url("{{ url_for('static', filename='images/img.jpg') }}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  .form-container {
+    background-color: rgba(223, 216, 216, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    max-width: 600px;
+    margin: 60px auto;
+    text-decoration: aliceblue;
+    text-decoration-color: aliceblue;
+    text-decoration-style: dashed;
+  }
+
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+  }
+
+  .btn-success {
+    width: 100%;
+    padding: 10px;
+  }
+</style>
+
+<div class="container">
+  <div class="form-container">
+    <h2>Add New Book</h2>
+    <form method="POST">
+      {{ form.hidden_tag() }}
+      <div class="mb-3">
+        {{ form.title.label(class="form-label") }}
+        {{ form.title(class="form-control", placeholder="Enter book title") }}
+      </div>
+      <div class="mb-3">
+        {{ form.author.label(class="form-label") }}
+        {{ form.author(class="form-control", placeholder="Enter author name") }}
+      </div>
+      <div class="mb-3">
+        {{ form.category.label(class="form-label") }}
+        {{ form.category(class="form-control", placeholder="Enter book category") }}
+      </div>
+      <div class="mb-3">
+        {{ form.copies.label(class="form-label") }}
+        {{ form.copies(class="form-control", placeholder="Enter number of copies") }}
+      </div>
+      <button type="submit" class="btn btn-success">{{ form.submit.label.text }}</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

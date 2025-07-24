@@ -1,0 +1,8 @@
+Flask
+Flask-SQLAlchemy
+Flask-WTF
+Flask-Login
+Flask-Mail
+email-validator
+Flask==2.3.3
+gunicorn==21.2.0

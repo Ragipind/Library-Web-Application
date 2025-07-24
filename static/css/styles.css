@@ -1,0 +1,23 @@
+/* Bootstrap custom styles */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', sans-serif;
+    background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fold-library&psig=AOvVaw3Ri10MbocONgb-DhWEjYXk&ust=1753464564923000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCJjmoNqC1o4DFQAAAAAdAAAAABAL");
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.card {
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
